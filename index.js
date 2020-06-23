@@ -86,6 +86,8 @@ client.on('message', async message => {
 
     if(message.content === "!radio"){
 
+        if (message.author.bot) return; //L'utilisateur n'est pas un bot
+        if (!message.guild) return; // user is in a server (guild)
 
             if (message.member.voice.channel && connection === null) {
 
@@ -124,6 +126,9 @@ dispatcher.on('error', console.error);
 
 if(message.content === "!stopradio"){
     
+    if (message.author.bot) return; //L'utilisateur n'est pas un bot
+    if (!message.guild) return; // user is in a server (guild)
+
 if(message.member.voice.channel){
     message.react("👋");
     await message.channel.send(`Merci de nous avoir écouté ${message.author}, à la prochaine ! 💫`);
@@ -138,6 +143,9 @@ if(message.member.voice.channel){
 }
 
 if(message.content === "!now"){
+
+    if (message.author.bot) return; //L'utilisateur n'est pas un bot
+    if (!message.guild) return; // user is in a server (guild)
     
     fetch("https://api.radioking.io/widget/radio/sunset-radio-1/track/current")
   .then(response => response.json())
