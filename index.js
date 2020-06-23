@@ -40,8 +40,11 @@ let artist;
             });
 
             if(!artist||!title){client.user.setActivity(`sunsetradio.me`, { type: 'LISTENING' });}
+            else{
+                client.user.setActivity(`${artist} - ${title}`, { type: 'LISTENING' });
+            }
 
-        client.user.setActivity(`${artist} - ${title}`, { type: 'LISTENING' });
+        
 
     }, 2000);
 
