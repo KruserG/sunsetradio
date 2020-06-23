@@ -105,7 +105,7 @@ dispatcher.on('error', console.error);
 
 }
 
-if(message.content === "!stop"){
+if(message.content === "!stopradio"){
 if(message.member.voice.channel){
     message.react("👋");
     await message.channel.send(`Merci de nous avoir écouté ${message.author}, à la prochaine ! 💫`);
