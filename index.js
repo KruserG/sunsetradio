@@ -100,8 +100,7 @@ client.on('message', async message => {
       
               return message.channel.send(`${message.author}, Sunset Radio est en maintenance pour le moment.`,nowPlaying);
               
-          }
-          
+          }});
         if (message.member.voice.channel && connection === null) {
             connection = await message.member.voice.channel.join(); 
             message.react("✅");
