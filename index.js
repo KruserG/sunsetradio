@@ -3,6 +3,7 @@ const Discord = require("discord.js");
 const { config } = require("dotenv");
 const fs = require('fs');
 const fetch = require("node-fetch");
+const { title } = require("process");
 
 
 config({ path: __dirname + "/.env" });
@@ -131,8 +132,21 @@ if(message.content === "!now"){
   .then(response => response.json())
   .then(json => {
 
-    
+    if(!artist||!title){
+        
+        const nowPlaying = new   MessageEmbed()
+        .setColor("#ff4545")
+        .setAuthor('wwww.sunsetradio.me', 'https://i.imgur.com/DwtzhmQ.png', 'https://www.sunsetradio.me/')
+        .setTitle(`⛔ Oh non ! Une maintenance est en cours 🔨`)
+        .setDescription(`Nous sommes entrain d'améliorer votre radio, suivez l'avancement de la maintenance sur notre compte **Instagram** !\n📢`)
+        .setFooter("@sunsetradiofr", 'https://i1.wp.com/www.blacksmithbakery.ca/wp-content/uploads/2017/07/insta-white.png')
+        .setThumbnail(json.cover);
 
+        return message.channel.send(`${message.author}, Sunset Radio n'est pas disponible pour le moment... 😭`,nowPlaying);
+        
+    } else{
+
+        
     const nowPlaying = new   MessageEmbed()
     .setColor("#66CD00")
     .setAuthor('wwww.sunsetradio.me', 'https://i.imgur.com/DwtzhmQ.png', 'https://www.sunsetradio.me/')
@@ -141,7 +155,11 @@ if(message.content === "!now"){
     .setThumbnail(json.cover)
     
     
-    message.channel.send(`${message.author}, voici le nom de la chanson actuelle ! 🎵`,nowPlaying);
+    return message.channel.send(`${message.author}, voici le nom de la chanson actuelle ! 🎵`,nowPlaying);
+
+    }
+    
+
 
   } )
   
