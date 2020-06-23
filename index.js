@@ -84,58 +84,35 @@ client.on('message', async message => {
 
     if(message.content === "!radio"){
 
-        fetch("https://api.radioking.io/widget/radio/sunset-radio-1/track/current")
-        .then(response => response.json())
-        .then(json => {
-      
-          if(!json.artist||!json.title){
-              
-              const nowPlaying = new   MessageEmbed()
-              .setColor("#ff4545")
-              .setAuthor('wwww.sunsetradio.me', 'https://i.imgur.com/uhfAN6p.png', 'https://www.sunsetradio.me/')
-              .setTitle(`⛔ Oh non ! Une maintenance est en cours 🔨`)
-              .setDescription(`Nous sommes entrain d'améliorer votre radio. Suivez l'avancement de la maintenance sur notre compte **Instagram** !`)
-              .setFooter("sunsetradiofr", 'https://demo.wpzoom.com/instagram-widget/files/2016/08/icon-256x256.png')
-              .setThumbnail("https://i.imgur.com/uhfAN6p.png");
-              return message.channel.send(`${message.author}, Sunset Radio est en maintenance pour le moment.`,nowPlaying);
+
+            if (message.member.voice.channel && connection === null) {
+                connection = await message.member.voice.channel.join(); 
+                message.react("✅");
+                message.channel.send(`Merci d'avoir choisi **Sunset Radio** ! :heart:`);
             }else{
-
-                async ()=>{
-
-                    if (message.member.voice.channel && connection === null) {
-                        connection = await message.member.voice.channel.join(); 
-                        message.react("✅");
-                        message.channel.send(`Merci d'avoir choisi **Sunset Radio** ! :heart:`);
-                    }else{
-                        message.react("❌");
-                   return message.reply("vous devez être **présent** dans un salon vocal pour inviter **Sunset Radio**. :eyes:")
-                    }
-
-
-        // Create a dispatcher
-        const dispatcher = connection.play('https://www.radioking.com/play/sunset-radio-1');
-
-        dispatcher.on('start', () => {
-            console.log(`[LIVE] SUNSET is LIVE in ${message.guild.name} !`);
-        });
-        
-        dispatcher.on('finish', () => {
-            console.log(`[STOP] SUNSET is now OFF in ${message.guild.name}`);
-            connection = null;
-        });
-        
-        // Always remember to handle errors appropriately!
-        dispatcher.on('error', console.error);
-           
-        
-
-                }
-
-                
+                message.react("❌");
+           return message.reply("vous devez être **présent** dans un salon vocal pour inviter **Sunset Radio**. :eyes:")
             }
+
+
+// Create a dispatcher
+const dispatcher = connection.play('https://www.radioking.com/play/sunset-radio-1');
+
+dispatcher.on('start', () => {
+    console.log(`[LIVE] SUNSET is LIVE in ${message.guild.name} !`);
+});
+
+dispatcher.on('finish', () => {
+    console.log(`[STOP] SUNSET is now OFF in ${message.guild.name}`);
+    connection = null;
+});
+
+// Always remember to handle errors appropriately!
+dispatcher.on('error', console.error);
+   
               
               
-          });
+          
         
 
 
