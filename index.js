@@ -139,10 +139,10 @@ if(message.content === "!now"){
         .setAuthor('wwww.sunsetradio.me', 'https://i.imgur.com/uhfAN6p.png', 'https://www.sunsetradio.me/')
         .setTitle(`⛔ Oh non ! Une maintenance est en cours 🔨`)
         .setDescription(`Nous sommes entrain d'améliorer votre radio, suivez l'avancement de la maintenance sur notre compte **Instagram** !`)
-        .setFooter("sunsetradiofr", 'https://cdn4.iconfinder.com/data/icons/social-messaging-ui-color-squares-01/3/35-512.png')
+        .setFooter("sunsetradiofr", 'https://demo.wpzoom.com/instagram-widget/files/2016/08/icon-256x256.png')
         .setThumbnail("https://i.imgur.com/uhfAN6p.png");
 
-        return message.channel.send(`${message.author}, Sunset Radio n'est pas disponible pour le moment... 😭`,nowPlaying);
+        return message.channel.send(`${message.author}, Sunset Radio est en maintenance pour le moment.`,nowPlaying);
         
     } else{
 
