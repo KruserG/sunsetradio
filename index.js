@@ -136,10 +136,10 @@ if(message.content === "!now"){
         
         const nowPlaying = new   MessageEmbed()
         .setColor("#ff4545")
-        .setAuthor('wwww.sunsetradio.me', 'https://i.imgur.com/DwtzhmQ.png', 'https://www.sunsetradio.me/')
+        .setAuthor('wwww.sunsetradio.me', 'https://i.imgur.com/uhfAN6p.png', 'https://www.sunsetradio.me/')
         .setTitle(`⛔ Oh non ! Une maintenance est en cours 🔨`)
-        .setDescription(`Nous sommes entrain d'améliorer votre radio, suivez l'avancement de la maintenance sur notre compte **Instagram** !\n📢`)
-        .setFooter("**sunsetradiofr**", 'https://www.shareicon.net/data/256x256/2016/07/10/119932_instagram_512x512.png')
+        .setDescription(`Nous sommes entrain d'améliorer votre radio, suivez l'avancement de la maintenance sur notre compte **Instagram** !`)
+        .setFooter("sunsetradiofr", 'https://cdn4.iconfinder.com/data/icons/social-messaging-ui-color-squares-01/3/35-512.png')
         .setThumbnail("https://i.imgur.com/uhfAN6p.png");
 
         return message.channel.send(`${message.author}, Sunset Radio n'est pas disponible pour le moment... 😭`,nowPlaying);
