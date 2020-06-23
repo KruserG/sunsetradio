@@ -136,11 +136,11 @@ if(message.content === "!now"){
         
         const nowPlaying = new   MessageEmbed()
         .setColor("#ff4545")
-        .setAuthor('wwww.sunsetradio.me', 'https://i.imgur.com/uhfAN6p.png', 'https://www.sunsetradio.me/')
+        .setAuthor('wwww.sunsetradio.me', 'https://i.imgur.com/DwtzhmQ.png', 'https://www.sunsetradio.me/')
         .setTitle(`⛔ Oh non ! Une maintenance est en cours 🔨`)
         .setDescription(`Nous sommes entrain d'améliorer votre radio, suivez l'avancement de la maintenance sur notre compte **Instagram** !\n📢`)
-        .setFooter("@sunsetradiofr", 'https://i1.wp.com/www.blacksmithbakery.ca/wp-content/uploads/2017/07/insta-white.png')
-        .setThumbnail(json.cover);
+        .setFooter("**sunsetradiofr**", 'https://www.shareicon.net/data/256x256/2016/07/10/119932_instagram_512x512.png')
+        .setThumbnail("https://i.imgur.com/uhfAN6p.png");
 
         return message.channel.send(`${message.author}, Sunset Radio n'est pas disponible pour le moment... 😭`,nowPlaying);
         
