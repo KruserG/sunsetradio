@@ -40,7 +40,7 @@ let artist;
             
             });
 
-            if(!artist||!title){client.user.setActivity(`maintenance de la radio`, { type: 'LISTENING' });}
+            if(!artist||!title){client.user.setActivity(`radio en maintenance`, { type: 'LISTENING' });}
             else{
                 client.user.setActivity(`${artist} - ${title}`, { type: 'LISTENING' });
             }
@@ -94,42 +94,55 @@ client.on('message', async message => {
               .setColor("#ff4545")
               .setAuthor('wwww.sunsetradio.me', 'https://i.imgur.com/uhfAN6p.png', 'https://www.sunsetradio.me/')
               .setTitle(`⛔ Oh non ! Une maintenance est en cours 🔨`)
-              .setDescription(`Nous sommes entrain d'améliorer votre radio, suivez l'avancement de la maintenance sur notre compte **Instagram** !`)
+              .setDescription(`Nous sommes entrain d'améliorer votre radio. Suivez l'avancement de la maintenance sur notre compte **Instagram** !`)
               .setFooter("sunsetradiofr", 'https://demo.wpzoom.com/instagram-widget/files/2016/08/icon-256x256.png')
               .setThumbnail("https://i.imgur.com/uhfAN6p.png");
-      
               return message.channel.send(`${message.author}, Sunset Radio est en maintenance pour le moment.`,nowPlaying);
-              
-          }});
-        if (message.member.voice.channel && connection === null) {
-            connection = await message.member.voice.channel.join(); 
-            message.react("✅");
-            message.channel.send(`Merci d'avoir choisi **Sunset Radio** ! :heart:`);
-        }else{
-            message.react("❌");
-       return message.reply("vous devez être **présent** dans un salon vocal pour inviter **Sunset Radio**. :eyes:")
-        }
+            }else{
+
+                async ()=>{
+
+                    if (message.member.voice.channel && connection === null) {
+                        connection = await message.member.voice.channel.join(); 
+                        message.react("✅");
+                        message.channel.send(`Merci d'avoir choisi **Sunset Radio** ! :heart:`);
+                    }else{
+                        message.react("❌");
+                   return message.reply("vous devez être **présent** dans un salon vocal pour inviter **Sunset Radio**. :eyes:")
+                    }
+
 
         // Create a dispatcher
-const dispatcher = connection.play('https://www.radioking.com/play/sunset-radio-1');
+        const dispatcher = connection.play('https://www.radioking.com/play/sunset-radio-1');
 
-dispatcher.on('start', () => {
-	console.log(`[LIVE] SUNSET is LIVE in ${message.guild.name} !`);
-});
+        dispatcher.on('start', () => {
+            console.log(`[LIVE] SUNSET is LIVE in ${message.guild.name} !`);
+        });
+        
+        dispatcher.on('finish', () => {
+            console.log(`[STOP] SUNSET is now OFF in ${message.guild.name}`);
+            connection = null;
+        });
+        
+        // Always remember to handle errors appropriately!
+        dispatcher.on('error', console.error);
+           
+        
 
-dispatcher.on('finish', () => {
-    console.log(`[STOP] SUNSET is now OFF in ${message.guild.name}`);
-    connection = null;
-});
+                }
 
-// Always remember to handle errors appropriately!
-dispatcher.on('error', console.error);
-   
+                
+            }
+              
+              
+          });
+        
 
 
 }
 
 if(message.content === "!stopradio"){
+    
 if(message.member.voice.channel){
     message.react("👋");
     await message.channel.send(`Merci de nous avoir écouté ${message.author}, à la prochaine ! 💫`);
@@ -159,7 +172,7 @@ if(message.content === "!now"){
         .setFooter("sunsetradiofr", 'https://demo.wpzoom.com/instagram-widget/files/2016/08/icon-256x256.png')
         .setThumbnail("https://i.imgur.com/uhfAN6p.png");
 
-        return message.channel.send(`${message.author}, Sunset Radio est en maintenance pour le moment.`,nowPlaying);
+        return message.channel.send(`${message.author}, **Sunset Radio** est en maintenance pour le moment.`,nowPlaying);
         
     } else{
 
@@ -168,11 +181,16 @@ if(message.content === "!now"){
     .setColor("#66CD00")
     .setAuthor('wwww.sunsetradio.me', 'https://i.imgur.com/DwtzhmQ.png', 'https://www.sunsetradio.me/')
     .setTitle(`🔴 EN DIRECT sur Sunset Radio `)
-    .setDescription(`${json.artist} - ${json.title}`)
+    .setDescription(`\n\n 🎵 **Titre :** ${json.title} \n\n 🎤 **Artiste :** ${json.artist}`)
     .setThumbnail(json.cover)
     
     
-    return message.channel.send(`${message.author}, voici le nom de la chanson actuelle ! 🎵`,nowPlaying);
+    return message.channel.send(`${message.author}, voici le nom de la chanson actuelle ! 🎵`,nowPlaying).then(
+        async (m)=>{
+            await m.react("👍");
+            await m.react("👎");
+        }
+    );
 
     }
     
