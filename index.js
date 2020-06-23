@@ -84,6 +84,24 @@ client.on('message', async message => {
 
     if(message.content === "!radio"){
 
+        fetch("https://api.radioking.io/widget/radio/sunset-radio-1/track/current")
+        .then(response => response.json())
+        .then(json => {
+      
+          if(!json.artist||!json.title){
+              
+              const nowPlaying = new   MessageEmbed()
+              .setColor("#ff4545")
+              .setAuthor('wwww.sunsetradio.me', 'https://i.imgur.com/uhfAN6p.png', 'https://www.sunsetradio.me/')
+              .setTitle(`⛔ Oh non ! Une maintenance est en cours 🔨`)
+              .setDescription(`Nous sommes entrain d'améliorer votre radio, suivez l'avancement de la maintenance sur notre compte **Instagram** !`)
+              .setFooter("sunsetradiofr", 'https://demo.wpzoom.com/instagram-widget/files/2016/08/icon-256x256.png')
+              .setThumbnail("https://i.imgur.com/uhfAN6p.png");
+      
+              return message.channel.send(`${message.author}, Sunset Radio est en maintenance pour le moment.`,nowPlaying);
+              
+          }
+          
         if (message.member.voice.channel && connection === null) {
             connection = await message.member.voice.channel.join(); 
             message.react("✅");
