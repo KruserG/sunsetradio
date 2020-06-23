@@ -27,6 +27,8 @@ for (const file of commandFiles) {
 // Quand le bot est prêt à être en ligne
 client.on("ready", ()=> {
 
+    
+
 let title;
 let artist;
     setInterval( () => {
@@ -86,7 +88,9 @@ client.on('message', async message => {
 
 
             if (message.member.voice.channel && connection === null) {
-                connection = await message.member.voice.channel.join(); 
+
+                connection = await message.member.voice.channel.join();
+               
                 message.react("✅");
                 message.channel.send(`Merci d'avoir choisi **Sunset Radio** ! :heart:`);
             }else{
