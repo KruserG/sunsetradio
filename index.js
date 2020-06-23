@@ -40,7 +40,7 @@ let artist;
             
             });
 
-            if(!artist||!title){client.user.setActivity(`maintenance en cours`, { type: 'LISTENING' });}
+            if(!artist||!title){client.user.setActivity(`maintenance de la radio`, { type: 'LISTENING' });}
             else{
                 client.user.setActivity(`${artist} - ${title}`, { type: 'LISTENING' });
             }
