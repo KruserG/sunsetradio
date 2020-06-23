@@ -132,7 +132,7 @@ if(message.content === "!now"){
   .then(response => response.json())
   .then(json => {
 
-    if(!artist||!title){
+    if(!json.artist||!json.title){
         
         const nowPlaying = new   MessageEmbed()
         .setColor("#ff4545")
