@@ -100,7 +100,8 @@ dispatcher.on('start', () => {
 });
 
 dispatcher.on('finish', () => {
-	console.log('[STOP] SUNSET IS OFF.');
+    console.log(`[STOP] SUNSET is now OFF in ${message.guild.name}`);
+    connection = null;
 });
 
 // Always remember to handle errors appropriately!
