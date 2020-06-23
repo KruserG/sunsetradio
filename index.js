@@ -161,7 +161,7 @@ if(message.content === "!now"){
     const nowPlaying = new   MessageEmbed()
     .setColor("#66CD00")
     .setAuthor('wwww.sunsetradio.me', 'https://i.imgur.com/DwtzhmQ.png', 'https://www.sunsetradio.me/')
-    .setTitle(`🔴 EN DIRECT sur Sunset Radio `)
+    .setTitle(`EN DIRECT sur Sunset Radio 📡`)
     .setDescription(`\n\n 🎵 **Titre :** ${json.title} \n\n 🎤 **Artiste :** ${json.artist}`)
     .setThumbnail(json.cover)
     
