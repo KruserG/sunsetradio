@@ -114,7 +114,12 @@ dispatcher.on('finish', () => {
 });
 
 // Always remember to handle errors appropriately!
-dispatcher.on('error', console.error);
+dispatcher.on('error', (e)=>{
+    console.log(`[ERROR] SOMETHING HAPPENED.. REBOOTING THE STREAM ON ${message.guild.name}`);
+    console.log(e);
+    dispatcher = connection.play('https://www.radioking.com/play/sunset-radio-1');
+});
+
    
               
               
