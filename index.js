@@ -179,12 +179,7 @@ if(message.content === "!now"){
     .setThumbnail(json.cover)
     
     
-    return message.channel.send(`${message.author}, voici le nom de la chanson actuelle ! 🎵`,nowPlaying).then(
-        async (m)=>{
-            await m.react("👍");
-            await m.react("👎");
-        }
-    );
+    return message.channel.send(`${message.author}, voici le nom de la chanson actuelle ! 🎵`,nowPlaying);
 
     }
     
