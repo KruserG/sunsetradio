@@ -10,7 +10,7 @@ config({ path: __dirname + "/.env" });
 
 
 const client = new Client();
-const prefix = "1";
+const prefix = "!";
 
 
 client.commands = new Collection();
@@ -23,6 +23,7 @@ for (const file of commandFiles) {
 	client.commands.set(command.name, command);
 }
 
+const cooldowns = new Discord.Collection();
 
 // Quand le bot est prêt à être en ligne
 client.on("ready", ()=> {
@@ -69,6 +70,26 @@ client.on("message", async message => {
 // If command is not working
 const command = client.commands.get(commandName)|| client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
 if (!command) return;
+
+if (!cooldowns.has(command.name)) {
+	cooldowns.set(command.name, new Discord.Collection());
+}
+
+const now = Date.now();
+const timestamps = cooldowns.get(command.name);
+const cooldownAmount = (command.cooldown || 3) * 1000;
+
+if (timestamps.has(message.author.id)) {
+		const expirationTime = timestamps.get(message.author.id) + cooldownAmount;
+
+	if (now < expirationTime) {
+		const timeLeft = (expirationTime - now) / 1000;
+		return message.reply(`vous devez attendre ${timeLeft.toFixed(1)} seconde(s) pour réutiliser la commande \`${command.name}\`.`);
+	}
+}
+
+timestamps.set(message.author.id, now);
+setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
 
    try {
        command.execute(message, args);
@@ -149,7 +170,7 @@ if(message.member.voice.channel){
 
 if(message.content === "!now"){
 
-    if (message.author.bot) return; //L'utilisateur n'est pas un bot
+   /* if (message.author.bot) return; //L'utilisateur n'est pas un bot
     if (!message.guild) return; // user is in a server (guild)
     
     fetch("https://api.radioking.io/widget/radio/sunset-radio-1/track/current")
@@ -185,7 +206,7 @@ if(message.content === "!now"){
     
 
 
-  } )
+  } );*/
   
    
 }
