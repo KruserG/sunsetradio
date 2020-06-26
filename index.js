@@ -115,7 +115,7 @@ client.on('message', async message => {
                 connection = await message.member.voice.channel.join();
                
                 message.react("✅");
-                message.channel.send(`Merci d'avoir choisi **Sunset Radio** ! :heart:\nEntrez la commande \`!help\` pour vous guider 🌇`);
+                message.channel.send(`Merci d'avoir choisi **Sunset Radio** ! :heart:\nEntrez la commande \`!help\` pour afficher le guide 🌇`);
             }else{
                 message.react("❌");
            return message.reply("vous devez être **présent** dans un salon vocal pour inviter **Sunset Radio**. :eyes:")
