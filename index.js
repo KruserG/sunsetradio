@@ -127,7 +127,7 @@ client.on('message', async message => {
 const dispatcher = connection.play('https://www.radioking.com/play/sunset-radio-1');
 
 dispatcher.on('start', () => {
-    console.log(`${message.author} dans ${message.guild.name} : !radio`);
+    console.log(`[RADIO] Par ${message.author.username} dans [${message.guild.name}]`);
     console.log(`[LIVE] SUNSET is LIVE in ${message.guild.name} !`);
 });
 
@@ -161,7 +161,7 @@ if(message.member.voice.channel){
     message.react("👋");
     await message.channel.send(`Merci de nous avoir écouté ${message.author}, à la prochaine ! 💫`);
     await message.member.voice.channel.leave();
-    console.log(`${message.author} dans ${message.guild.name} : !stopradio`)
+    console.log(`[STOPRADIO] Par ${message.author.username} dans [${message.guild.name}]`)
     console.log(`[STOP] SUNSET is now OFF in ${message.guild.name}`);
     
 }else{

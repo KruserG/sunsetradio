@@ -36,9 +36,9 @@ module.exports = {
 
       try{
         user.send(embed);
-        console.log(`${message.author} dans ${message.guild.name} : !help`)
+        console.log(`[HELP] Par ${message.author.username} dans [${message.guild.name}]`)
        }catch(e){
-         console.log(`${message.author} n'accepte pas les messages privés.`);
+         console.log(`${message.author.username} n'accepte pas les messages privés.`);
        }
              
               
