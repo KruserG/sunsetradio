@@ -92,7 +92,7 @@ timestamps.set(message.author.id, now);
 setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
 
    try {
-       command.execute(message, args);
+       command.execute(message, args, client);
    } catch (error) {
        console.error(error);
        message.reply('cette commande n\'est pas disponible pour le moment.');
