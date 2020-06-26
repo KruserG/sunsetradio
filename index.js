@@ -116,6 +116,7 @@ client.on('message', async message => {
                
                 message.react("✅");
                 message.channel.send(`Merci d'avoir choisi **Sunset Radio** ! :heart:\nEntrez la commande \`!help\` pour afficher le guide 🌇`);
+              
             }else{
                 message.react("❌");
            return message.reply("vous devez être **présent** dans un salon vocal pour inviter **Sunset Radio**. :eyes:")
@@ -126,6 +127,7 @@ client.on('message', async message => {
 const dispatcher = connection.play('https://www.radioking.com/play/sunset-radio-1');
 
 dispatcher.on('start', () => {
+    console.log(`${message.author} dans ${message.guild.name} : !radio`);
     console.log(`[LIVE] SUNSET is LIVE in ${message.guild.name} !`);
 });
 
@@ -138,7 +140,7 @@ dispatcher.on('finish', () => {
 dispatcher.on('error', (e)=>{
     console.log(`[ERROR] SOMETHING HAPPENED.. REBOOTING THE STREAM ON ${message.guild.name}`);
     console.log(e);
-    dispatcher = connection.play('https://www.radioking.com/play/sunset-radio-1');
+    
 });
 
    
@@ -159,6 +161,7 @@ if(message.member.voice.channel){
     message.react("👋");
     await message.channel.send(`Merci de nous avoir écouté ${message.author}, à la prochaine ! 💫`);
     await message.member.voice.channel.leave();
+    console.log(`${message.author} dans ${message.guild.name} : !stopradio`)
     console.log(`[STOP] SUNSET is now OFF in ${message.guild.name}`);
     
 }else{

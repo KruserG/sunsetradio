@@ -34,7 +34,7 @@ module.exports = {
     .setDescription(`\n\n 🎵 **Titre :** ${json.title} \n\n 🎤 **Artiste :** ${json.artist}`)
     .setThumbnail(json.cover)
     
-    
+    console.log(`${message.author} dans ${message.guild.name} : !now`);
     return message.channel.send(`${message.author}, voici le nom de la chanson actuelle ! 🎵`,nowPlaying);
 
     }
