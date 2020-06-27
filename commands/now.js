@@ -8,6 +8,7 @@ module.exports = {
 	description: 'Now playing song on the radio',
 	execute(message, args) {
 
+    try{
 		fetch("https://api.radioking.io/widget/radio/sunset-radio-1/track/current")
   .then(response => response.json())
   .then(json => {
@@ -41,7 +42,10 @@ module.exports = {
     
 
 
-  } );
+  } ); } catch(e){
+    console.log(e);
+    console.log("Fetch error !");
+  }
   
    
 
