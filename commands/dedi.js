@@ -21,11 +21,7 @@ module.exports = {
 		  .setFooter(message.author.username, message.author.displayAvatarURL({format:"jpg"}));
 
 		  await message.react("📢");
-		  /*
-		  await message.react("<:sun:717732471071965294>");
-		  await message.react("<:set:717732486162940044>");
-		  await message.react("<:rad:717735278294597771>");
-		  await message.react("<:io:717736548510072873>"); */
+
 		  message.channel.send(`Merci ${message.author} ❤️ !\n\nTa dédicace a été envoyé avec succès aux animateurs de Sunset Radio ! 🌇\n\n*Note que tu dois attendre \`5 minutes\` pour envoyer une nouvelle dédicace*`);
 		  
 

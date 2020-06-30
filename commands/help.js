@@ -28,18 +28,11 @@ module.exports = {
         
         .setFooter("La Sunset Team", 'https://ukhnk407acv3nrmyc15obad1-wpengine.netdna-ssl.com/wp-content/uploads/2015/06/Facebook-checkmark-300x300.png');
      
-        message.reply("un message vous a été envoyé en privé afin de vous aider ! 🔍 ")
+       
       // Send the embed to the same channel as the message
-
-      
-      
-
-      try{
-        user.send(embed);
-        console.log(`[HELP] Par ${message.author.username} dans [${message.guild.name}]`)
-       }catch(e){
-         console.log(`${message.author.username} n'accepte pas les messages privés.`);
-       }
+ console.log(`[HELP] Par ${message.author.username} dans [${message.guild.name}]`);
+     
+message.channel.send(embed);
              
               
             

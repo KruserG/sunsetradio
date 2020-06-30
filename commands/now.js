@@ -17,7 +17,7 @@ module.exports = {
         
         const nowPlaying = new   MessageEmbed()
         .setColor("#ff4545")
-        .setAuthor('wwww.sunsetradio.me', 'https://i.imgur.com/uhfAN6p.png', 'https://www.sunsetradio.me/')
+        .setAuthor('sunsetradio.me', 'https://i.imgur.com/uhfAN6p.png', 'https://www.sunsetradio.me/')
         .setTitle(`⛔ Oh non ! Une maintenance est en cours 🔨`)
         .setDescription(`Nous sommes entrain d'améliorer votre radio, suivez l'avancement de la maintenance sur notre compte **Instagram** !`)
         .setFooter("sunsetradiofr", 'https://demo.wpzoom.com/instagram-widget/files/2016/08/icon-256x256.png')
@@ -30,7 +30,7 @@ module.exports = {
         
     const nowPlaying = new   MessageEmbed()
     .setColor("#66CD00")
-    .setAuthor('❤️ ou 💔 ce morceau en vous rendant sur sunsetradio.me', 'https://i.imgur.com/DwtzhmQ.png', 'https://www.sunsetradio.me/')
+    .setAuthor('❤️ ou 💔 ce morceau en cliquant ici', 'https://i.imgur.com/DwtzhmQ.png', 'https://www.sunsetradio.me/')
     .setTitle(`EN DIRECT sur Sunset Radio 📡`)
     .setDescription(`\n\n 🎵 **Titre :** ${json.title} \n\n 🎤 **Artiste :** ${json.artist}`)
     .setThumbnail(json.cover)
@@ -42,7 +42,7 @@ module.exports = {
     
 
 
-  } ); } catch(e){
+  } ).catch(error => {console.log("[Promise failed]");}); } catch(e){
     console.log(e);
     console.log("Fetch error !");
   }

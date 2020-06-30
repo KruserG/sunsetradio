@@ -3,7 +3,8 @@ const Discord = require("discord.js");
 const { config } = require("dotenv");
 const fs = require('fs');
 const fetch = require("node-fetch");
-const { title } = require("process");
+
+
 
 
 config({ path: __dirname + "/.env" });
@@ -43,7 +44,7 @@ try{
             title= json.title;
              artist= json.artist;
             
-            });
+            }).catch(error => {console.log("[Promise failed]");});
 
             if(!artist||!title){client.user.setActivity(`radio en maintenance`, { type: 'LISTENING' });}
             else{
@@ -115,22 +116,20 @@ client.on('message', async message => {
 
         if (message.author.bot) return; //L'utilisateur n'est pas un bot
         if (!message.guild) return; // user is in a server (guild)
-
+        if(message.guild.me.voice.channel){
+            message.react("❌")
+            return message.reply("la radio est déjà démarrée dans un salon vocal ! ⚠️");
+        }
+        
             if (message.member.voice.channel) {
 
-                connection = await message.member.voice.channel.join();
+                const broadcast = client.voice.createBroadcast();
+             const connection = await message.member.voice.channel.join();
+             const dispatcher = broadcast.play('https://www.radioking.com/play/sunset-radio-1');
                
-                message.react("✅");
-                message.channel.send(`Merci d'avoir choisi **Sunset Radio** ! :heart:\nEntrez la commande \`!help\` pour afficher le guide 🌇`);
-              
-            }else{
-                message.react("❌");
-           return message.reply("vous devez être **présent** dans un salon vocal pour inviter **Sunset Radio**. :eyes:")
-            }
+              await connection.play(broadcast);
 
 
-// Create a dispatcher
-const dispatcher = connection.play('https://www.radioking.com/play/sunset-radio-1');
 
 dispatcher.on('start', () => {
     console.log(`[RADIO] Par ${message.author.username} dans [${message.guild.name}]`);
@@ -139,15 +138,26 @@ dispatcher.on('start', () => {
 
 dispatcher.on('finish', () => {
     console.log(`[STOP] SUNSET is now OFF in ${message.guild.name}`);
+   return  message.member.voice.channel.leave();
+   
     
 });
 
-// Always remember to handle errors appropriately!
+// Error handling
 dispatcher.on('error', (e)=>{
     console.log(`[ERROR] SOMETHING HAPPENED.. REBOOTING THE STREAM ON ${message.guild.name}`);
-    console.log(e);
+    return message.member.voice.channel.leave();
     
 });
+
+message.react("✅");
+message.channel.send(`Merci d'avoir choisi **Sunset Radio** ! :heart:\nEntrez la commande \`!help\` pour afficher le guide 🌇`);
+
+            }else{
+                message.react("❌");
+           return message.reply("vous devez être **présent** dans un salon vocal pour inviter **Sunset Radio**. :eyes:")
+            }
+
 
    
               
@@ -162,17 +172,19 @@ if(message.content === "!stopradio"){
     
     if (message.author.bot) return; //L'utilisateur n'est pas un bot
     if (!message.guild) return; // user is in a server (guild)
-
-if(message.member.voice.channel){
+    
+if(message.member.voice.channel.id === message.guild.me.voice.channel.id){
     message.react("👋");
+    
     await message.channel.send(`Merci de nous avoir écouté ${message.author}, à la prochaine ! 💫`);
-    await message.member.voice.channel.leave();
     console.log(`[STOPRADIO] Par ${message.author.username} dans [${message.guild.name}]`)
     console.log(`[STOP] SUNSET is now OFF in ${message.guild.name}`);
+   return  message.member.voice.channel.leave();
+    
     
 }else{
     message.react("❌");
-    return message.reply("vous devez être **présent** dans le salon vocal. :eyes:")
+    return message.reply("vous devez être **présent** dans le salon vocal de la radio. :eyes:")
 }
 
 }

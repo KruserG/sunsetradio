@@ -1,13 +1,12 @@
 
-const { Client, MessageEmbed, Collection } = require("discord.js");
+const { Client, MessageEmbed, Collection, User } = require("discord.js");
 
 module.exports = {
   name: 'ping',
 	description: 'Pong !',
-	execute(message, args) {
+	execute(message, args, client) {
 
 
-   console.log(message.guild);
 
 message.reply("pong !");
 
