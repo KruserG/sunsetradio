@@ -1,10 +1,11 @@
 
 const { Client, MessageEmbed, Collection, User } = require("discord.js");
+const fetch = require("node-fetch");
 
 module.exports = {
   name: 'info',
 description: 'Informations',
-	execute(message, args, client) {
+	async execute(message, args, client) {
 
 
    //console.log(message.guild.me.voice.channel.members.size);
@@ -13,13 +14,23 @@ description: 'Informations',
 
    const guilds = client.guilds.cache ;
     let total = 0 ;
-   
+   const webListeners =  await fetch("https://www.radioking.com/widgets/api/v1/radio/330331/listener/count")
+   .then(response => response.json())
+   .then(json =>{
+       
+    let count= json.listener_count;
+      return count;
+       
+       }).catch(error => {console.log("[Promise of Listener count failed]");});
+
+       
   
 
   
 
    const info = new   MessageEmbed()
    .setColor(message.guild.me.displayColor)
+   .setDescription(`Nous sommes présents sur **${client.guilds.cache.size}** serveurs`)
    .setAuthor('sunsetradio.me', 'https://i.imgur.com/DwtzhmQ.png', 'https://www.sunsetradio.me/')
    .setThumbnail("https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Circle-icons-radio.svg/1024px-Circle-icons-radio.svg.png")
    
@@ -39,7 +50,7 @@ description: 'Informations',
         if(count === 1){
             info.addField("🟢 "+name,count  + " auditeur")
         }else{
-            info.addField("🔴 "+name,"Aucun auditeur 😭")
+            info.addField("🔴 "+name,"Aucun auditeur")
         }
 		
 	}
@@ -51,12 +62,21 @@ description: 'Informations',
 	
 
    });
+
+   //make sure if it's plural we add an "s" that's why it's called sCase
+   const sCase = (webListeners)=>{
+if(webListeners > 1){
+return `${webListeners} auditeurs`;
+} else {
+  return `${webListeners} auditeur`;
+}
+   }
    if(total===0){
     info.setTitle(`Aucun auditeur sur Discord en ce moment 😭`);
    }else if(total===1){
-    info.setTitle(`🎧 ${total} auditeur sur Discord en ce moment`);
+    info.setTitle(`🎧 ${total} auditeur sur Discord en ce moment\n\n🖥️ ${sCase(webListeners)} sur le site`);
    }else{
-    info.setTitle(`🎧 ${total} auditeurs sur Discord en ce moment`);
+    info.setTitle(`🎧 ${total} auditeurs sur Discord en ce moment\n\n🖥️ ${sCase(webListeners)} sur le site`);
    }
    console.log(`[INFO] Par ${message.author.username} dans [${message.guild.name}]`);
    return message.channel.send(info);
