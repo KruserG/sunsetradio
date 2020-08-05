@@ -60,7 +60,7 @@ try{
 }
 
     
-    console.log(`${client.user.username} is online !`);
+    console.log(`${client.user.username} is online youpi !`);
 });
 
 
