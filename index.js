@@ -60,7 +60,7 @@ try{
 }
 
     
-    console.log(`${client.user.username} is online youpi !`);
+    console.log(`${client.user.username} is online !`);
 });
 
 
@@ -129,7 +129,7 @@ client.on('message', async message => {
 
            //     const broadcast = client.voice.createBroadcast();
              const connection = await message.member.voice.channel.join();
-             const dispatcher = broadcast.play('https://www.radioking.com/play/sunset-radio-1');
+             const dispatcher = broadcast.play('https://listen.radioking.com/radio/330331/stream/378616');
                
               await connection.play(broadcast);
 
