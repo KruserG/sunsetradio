@@ -44,7 +44,11 @@ try{
             title= json.title;
              artist= json.artist;
             
-            }).catch(error => {console.log("[Promise failed]");});
+            }).catch(error => {
+                console.log("[Promise failed]");
+                console.log(error);
+            
+            });
 
             if(!artist||!title){client.user.setActivity(`radio en maintenance`, { type: 'LISTENING' });}
             else{
