@@ -116,6 +116,7 @@ setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
 //creating an unique broadcast
 
 const broadcast = client.voice.createBroadcast();
+const dispatcher = broadcast.play('https://listen.radioking.com/radio/330331/stream/378616');
 
 client.on('message', async message => {
 
@@ -135,17 +136,17 @@ client.on('message', async message => {
 
            //     const broadcast = client.voice.createBroadcast();
              const connection = await message.member.voice.channel.join();
-             const dispatcher = broadcast.play('https://listen.radioking.com/radio/330331/stream/378616');
+           
                
               await connection.play(broadcast);
 
+              //loging in console
+              console.log(`[RADIO] Par ${message.author.username} dans [${message.guild.name}]`);
+              console.log(`[LIVE] SUNSET is LIVE in ${message.guild.name} !`);
 
 
-dispatcher.on('start', () => {
-    console.log(`[RADIO] Par ${message.author.username} dans [${message.guild.name}]`);
-    console.log(`[LIVE] SUNSET is LIVE in ${message.guild.name} !`);
-    
-});
+
+
 
 dispatcher.on('finish', () => {
     console.log(`[STOP] SUNSET is now OFF in ${message.guild.name}`);
