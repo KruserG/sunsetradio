@@ -7,6 +7,7 @@ const fetch = require("node-fetch");
 
 
 
+
 config({ path: __dirname + "/.env" });
 
 
@@ -57,7 +58,7 @@ try{
         
         
 
-    }, 5000);
+    }, 2000);
 } catch(e){
     console.log(e);
     console.log("Fetch error !");
