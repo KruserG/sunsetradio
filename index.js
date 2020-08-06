@@ -30,12 +30,12 @@ const cooldowns = new Discord.Collection();
 // Quand le bot est prêt à être en ligne
 client.on("ready", ()=> {
 
-    
+ /*   
 
 let title;
 let artist;
 
-try{
+ try{
     setInterval( async () => {
 
        await fetch("https://api.radioking.io/widget/radio/sunset-radio-1/track/current")
@@ -63,7 +63,8 @@ try{
   //  console.log(e);
   //  console.log("Fetch error !");
 }
-
+*/
+client.user.setActivity(`sunsetradio.me`, { type: 'LISTENING' });
     
     console.log(`${client.user.username} is online !`);
 });
