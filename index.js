@@ -57,7 +57,7 @@ try{
         
         
 
-    }, 2000);
+    }, 5000);
 } catch(e){
     console.log(e);
     console.log("Fetch error !");
