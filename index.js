@@ -46,8 +46,8 @@ try{
              artist= json.artist;
             
             }).catch(error => {
-                console.log("[Promise failed]");
-                console.log(error);
+            //    console.log("[Promise failed]");
+            //    console.log(error);
             
             });
 
@@ -56,12 +56,12 @@ try{
                 client.user.setActivity(`${artist} - ${title}`, { type: 'LISTENING' });
             }
         
-        
+      
 
     }, 2000);
 } catch(e){
-    console.log(e);
-    console.log("Fetch error !");
+  //  console.log(e);
+  //  console.log("Fetch error !");
 }
 
     
