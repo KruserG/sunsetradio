@@ -133,10 +133,15 @@ client.on('message', async message => {
 
 
     //fix command to fix when the stream is dead
+    // command tested and no interruptions
+    // add an event whenver a user joins
+    // experimental command only
+
     if(message.content === "!fix"){
+        const connection = await message.member.voice.channel.join();
         await connection.play(broadcast);
-        message.react("✅");
-message.channel.send(`Fixed !`);
+        message.react("⚙️").then(message.react("🔨"));
+message.channel.send(`La radio a été réparée avec succès par ${message.author} ! ⚙️🔨`);
 
      return   console.log(`[FIX] Par ${message.author.username} dans [${message.guild.name}]`);
     }
