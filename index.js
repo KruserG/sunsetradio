@@ -131,7 +131,16 @@ const dispatcher = broadcast.play('https://listen.radioking.com/radio/330331/str
 
 client.on('message', async message => {
 
-    
+
+    //fix command to fix when the stream is dead
+    if(message.content === "!fix"){
+        await connection.play(broadcast);
+        message.react("✅");
+message.channel.send(`Fixed !`);
+
+        console.log(`[FIX] Par ${message.author.username} dans [${message.guild.name}]`);
+    }
+
     if(message.content === "!radio"){
 
         const permissions = message.channel.permissionsFor(message.client.user);
