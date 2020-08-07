@@ -138,7 +138,7 @@ client.on('message', async message => {
         message.react("✅");
 message.channel.send(`Fixed !`);
 
-        console.log(`[FIX] Par ${message.author.username} dans [${message.guild.name}]`);
+     return   console.log(`[FIX] Par ${message.author.username} dans [${message.guild.name}]`);
     }
 
     if(message.content === "!radio"){
