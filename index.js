@@ -152,7 +152,7 @@ try{
     await connection.play(broadcast);
 }catch(e){
     message.react("❌")
-    message.reply("echec de réparation, merci de réessayer.")
+    message.reply("échec de réparation, merci de réessayer.")
 }
       
 
