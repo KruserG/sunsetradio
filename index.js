@@ -64,9 +64,20 @@ let artist;
   //  console.log("Fetch error !");
 }
 */
-client.user.setActivity(`sunsetradio.me`, { type: 'LISTENING' });
+
+client.user.setActivity(`${client.guilds.cache.size} serveurs`, { type: 'WATCHING' });
     
     console.log(`${client.user.username} is online !`);
+
+    //  ============================  playground : console log when bot's online ============================
+
+    client.guilds.cache.forEach((guild,id) => {
+        console.log(id)
+    });
+
+
+
+    //  ============================ playground end ============================
 });
 
 
@@ -123,6 +134,12 @@ client.on('message', async message => {
     
     if(message.content === "!radio"){
 
+        const permissions = message.channel.permissionsFor(message.client.user);
+        if (!permissions.has("CONNECT"))
+          return message.reply("Je ne peux pas me connecter au salon, assurez vous de me donner les permissions nécessaires.");
+        if (!permissions.has("SPEAK"))
+          return message.reply("Je ne peux pas parler dans le salon, assurez vous de me donner les permissions nécessaires.");
+
         if (message.author.bot) return; //L'utilisateur n'est pas un bot
         if (!message.guild) return; // user is in a server (guild)
         if(message.guild.me.voice.channel){
@@ -134,10 +151,10 @@ client.on('message', async message => {
         
             if (message.member.voice.channel) {
 
-           //     const broadcast = client.voice.createBroadcast();
+      
              const connection = await message.member.voice.channel.join();
            
-               
+             await connection.voice.setSelfDeaf(true);
               await connection.play(broadcast);
 
               //loging in console
