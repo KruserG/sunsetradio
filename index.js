@@ -128,6 +128,7 @@ setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
 
 const broadcast = client.voice.createBroadcast();
 const dispatcher = broadcast.play('https://listen.radioking.com/radio/330331/stream/378616');
+const delay = ms => new Promise(res => setTimeout(res, ms));
 
 client.on('message', async message => {
 
@@ -138,15 +139,26 @@ client.on('message', async message => {
     // experimental command only
 
     if(message.content === "!fix"){
+
+        if (message.author.bot) return; //L'utilisateur n'est pas un bot
+        if (!message.guild) return; // user is in a server (guild)
+        
+        message.channel.send(`Réparation en cours... ⚙️🔨`);
+
+        
+        await message.react("⚙️").then(message.react("🔨"));
+
         const connection = await message.member.voice.channel.join();
         await connection.play(broadcast);
-        message.react("⚙️").then(message.react("🔨"));
-message.channel.send(`La radio a été réparée avec succès par ${message.author} ! ⚙️🔨`);
+
+        
+message.channel.send(`La radio a été réparée avec succès par ${message.author} !`).then(m=> m.react("✅"));
 
      return   console.log(`[FIX] Par ${message.author.username} dans [${message.guild.name}]`);
     }
 
     if(message.content === "!radio"){
+
 
         const permissions = message.channel.permissionsFor(message.client.user);
         if (!permissions.has("CONNECT"))
