@@ -147,9 +147,14 @@ client.on('message', async message => {
 
         
         await message.react("⚙️").then(message.react("🔨"));
-
-        const connection = await message.member.voice.channel.join();
-        await connection.play(broadcast);
+try{
+    const connection = await message.member.voice.channel.join();
+    await connection.play(broadcast);
+}catch(e){
+    message.react("❌")
+    message.reply("echec de réparation, merci de réessayer.")
+}
+      
 
         
 message.channel.send(`La radio a été réparée avec succès par ${message.author} !`).then(m=> m.react("✅"));
