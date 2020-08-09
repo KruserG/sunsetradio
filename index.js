@@ -30,7 +30,7 @@ const cooldowns = new Discord.Collection();
 // Quand le bot est prêt à être en ligne
 client.on("ready", ()=> {
 
- /*   
+  
 
 let title;
 let artist;
@@ -51,30 +51,29 @@ let artist;
             
             });
 
-            if(!artist||!title){client.user.setActivity(`radio en maintenance`, { type: 'LISTENING' });}
+            if(!artist||!title){client.user.setActivity(`maintenance radio`, { type: 'LISTENING' });}
             else{
                 client.user.setActivity(`${artist} - ${title}`, { type: 'LISTENING' });
             }
         
       
 
-    }, 2000);
+    }, 3000);
 } catch(e){
   //  console.log(e);
   //  console.log("Fetch error !");
 }
-*/
 
-client.user.setActivity(`${client.guilds.cache.size} serveurs`, { type: 'WATCHING' });
+
     
     console.log(`${client.user.username} is online !`);
 
     //  ============================  playground : console log when bot's online ============================
 
-    client.guilds.cache.forEach((guild,id) => {
+  /*  client.guilds.cache.forEach((guild,id) => {
         console.log(id)
     });
-
+*/
 
 
     //  ============================ playground end ============================
