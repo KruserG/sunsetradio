@@ -104,9 +104,9 @@ return `${webListeners} auditeurs`;
    if(total===0){
     info.setTitle(`Aucun auditeur sur Discord en ce moment 😭`);
    }else if(total===1){
-    info.setTitle(`🎧 ${total} auditeur sur Discord\n\n🖥️ ${sCase(webListeners)} sur Web`);
+    info.setTitle(`🎧 ${total} auditeur sur Discord\n\n🖥️ ${sCase(webListeners)} sur le site`);
    }else{
-    info.setTitle(`🎧 ${total} auditeurs sur Discord\n\n🖥️ ${sCase(webListeners)} sur Web`);
+    info.setTitle(`🎧 ${total} auditeurs sur Discord\n\n🖥️ ${sCase(webListeners)} sur le site`);
    }
    console.log(`[INFO] Par ${message.author.username} dans [${message.guild.name}]`);
    return message.channel.send(info);
