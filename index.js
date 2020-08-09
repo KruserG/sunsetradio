@@ -69,10 +69,14 @@ let artist;
     console.log(`${client.user.username} is online !`);
 
     //  ============================  playground : console log when bot's online ============================
-
-  /*  client.guilds.cache.forEach((guild,id) => {
-        console.log(id)
+/*
+    let map = new Map();
+    map = client.guilds.cache.sort((g1,g2) => g2.memberCount - g1.memberCount);
+   map.forEach((guild,id) => {
+        console.log(`${guild.name} : ${guild.memberCount}` )
     });
+
+
 */
 
 
@@ -137,7 +141,7 @@ client.on('message', async message => {
     // add an event whenver a user joins
     // experimental command only
 
-    if(message.content === "!fix"){
+    if(message.content.toLowerCase() === `${prefix}fix`){
 
         if (message.author.bot) return; //L'utilisateur n'est pas un bot
         if (!message.guild) return; // user is in a server (guild)
@@ -161,7 +165,10 @@ message.channel.send(`La radio a été réparée avec succès par ${message.auth
      return   console.log(`[FIX] Par ${message.author.username} dans [${message.guild.name}]`);
     }
 
-    if(message.content === "!radio"){
+
+
+    
+    if(message.content.toLowerCase() === `${prefix}radio`){
 
 
         const permissions = message.channel.permissionsFor(message.client.user);
@@ -229,7 +236,7 @@ message.channel.send(`Merci d'avoir choisi **Sunset Radio** ! :heart:\nEntrez la
 
 }
 
-if(message.content === "!stopradio"){
+if(message.content.toLowerCase() === `${prefix}stopradio`){
     
     if (message.author.bot) return; //L'utilisateur n'est pas un bot
     if (!message.guild) return; // user is in a server (guild)

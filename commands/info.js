@@ -12,7 +12,6 @@ description: 'Informations',
    //console.log(client.guilds.cache.get("700100928212041829").me.voice.channel.members.size);
  
 
-   const guilds = client.guilds.cache ;
     let total = 0 ;
    const webListeners =  await fetch("https://www.radioking.com/widgets/api/v1/radio/330331/listener/count")
    .then(response => response.json())
@@ -32,16 +31,45 @@ description: 'Informations',
    .setColor(message.guild.me.displayColor)
    .setDescription(`Nous sommes présents sur **${client.guilds.cache.size}** serveurs`)
    .setAuthor('sunsetradio.me', 'https://i.imgur.com/DwtzhmQ.png', 'https://www.sunsetradio.me/')
-   .setThumbnail("https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Circle-icons-radio.svg/1024px-Circle-icons-radio.svg.png")
+   .setThumbnail("https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Circle-icons-radio.svg/1024px-Circle-icons-radio.svg.png");
    
  
+   // Step 1 : Creating a new map
+
+   let map = new Map();
+
+    // Step 2 : Filling the new map with filtered data  
+
+   map = client.guilds.cache.filter((g1)=>{
+    return g1.me.voice.channel;
+   });
+
+// Step 3 : Sorting the map
+
+   map.sort((g1,g2)=>{
+return g2.me.voice.channel.members.size - g1.me.voice.channel.members.size;
+   });
+
+  map.forEach((guild)=>console.log(guild.name));
 
 
-   guilds.forEach( (key,value) => {
+
+
+
+
+
+
+
+
+
+
+
+
+  map.forEach( (guild,id) => {
 	   
 	try{
-		const name = key.name;
-	const count = client.guilds.cache.get(value).me.voice.channel.members.size - 1;
+		const name = guild.name;
+	const count = client.guilds.cache.get(id).me.voice.channel.members.size - 1;
 
 	total += count;
 	if(count > 1){
@@ -63,6 +91,8 @@ description: 'Informations',
 
    });
 
+
+   
    //make sure if it's plural we add an "s" that's why it's called sCase
    const sCase = (webListeners)=>{
 if(webListeners > 1){
@@ -74,9 +104,9 @@ return `${webListeners} auditeurs`;
    if(total===0){
     info.setTitle(`Aucun auditeur sur Discord en ce moment 😭`);
    }else if(total===1){
-    info.setTitle(`🎧 ${total} auditeur sur Discord en ce moment\n\n🖥️ ${sCase(webListeners)} sur le site`);
+    info.setTitle(`🎧 ${total} auditeur sur Discord\n\n🖥️ ${sCase(webListeners)} sur Web`);
    }else{
-    info.setTitle(`🎧 ${total} auditeurs sur Discord en ce moment\n\n🖥️ ${sCase(webListeners)} sur le site`);
+    info.setTitle(`🎧 ${total} auditeurs sur Discord\n\n🖥️ ${sCase(webListeners)} sur Web`);
    }
    console.log(`[INFO] Par ${message.author.username} dans [${message.guild.name}]`);
    return message.channel.send(info);
