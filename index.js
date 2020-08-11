@@ -141,6 +141,7 @@ client.on('message', async message => {
     // add an event whenver a user joins
     // experimental command only
 
+/*
     if(message.content.toLowerCase() === `${prefix}fix`){
 
         if (message.author.bot) return; //L'utilisateur n'est pas un bot
@@ -164,7 +165,7 @@ message.channel.send(`La radio a été réparée avec succès par ${message.auth
 
      return   console.log(`[FIX] Par ${message.author.username} dans [${message.guild.name}]`);
     }
-
+*/
 
 
     
