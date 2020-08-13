@@ -60,7 +60,7 @@ let artist;
 
     }, 3000);
 } catch(e){
-  //  console.log(e);
+  console.log(e);
   //  console.log("Fetch error !");
 }
 
@@ -131,42 +131,8 @@ setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
 
 const broadcast = client.voice.createBroadcast();
 const dispatcher = broadcast.play('https://listen.radioking.com/radio/330331/stream/378616');
-const delay = ms => new Promise(res => setTimeout(res, ms));
 
 client.on('message', async message => {
-
-
-    //fix command to fix when the stream is dead
-    // command tested and no interruptions
-    // add an event whenver a user joins
-    // experimental command only
-
-/*
-    if(message.content.toLowerCase() === `${prefix}fix`){
-
-        if (message.author.bot) return; //L'utilisateur n'est pas un bot
-        if (!message.guild) return; // user is in a server (guild)
-        
-        message.channel.send(`Réparation en cours... ⚙️🔨`);
-
-        
-        await message.react("⚙️").then(message.react("🔨"));
-try{
-    const connection = await message.member.voice.channel.join();
-    await connection.play(broadcast);
-}catch(e){
-    message.react("❌")
-   return message.reply("une erreur est survenue lors de la tentative de traitement de votre réparation, merci de réessayer.")
-}
-      
-
-        
-message.channel.send(`La radio a été réparée avec succès par ${message.author} !`).then(m=> m.react("✅"));
-
-     return   console.log(`[FIX] Par ${message.author.username} dans [${message.guild.name}]`);
-    }
-*/
-
 
     
     if(message.content.toLowerCase() === `${prefix}radio`){
@@ -205,8 +171,9 @@ message.channel.send(`La radio a été réparée avec succès par ${message.auth
 
 dispatcher.on('finish', () => {
     console.log(`[STOP] SUNSET is now OFF in ${message.guild.name}`);
-    broadcast.end();
-   return  message.member.voice.channel.leave();
+    message.member.voice.channel.leave();
+    return broadcast.end();
+    
    
     
 });
@@ -214,8 +181,9 @@ dispatcher.on('finish', () => {
 // Error handling
 dispatcher.on('error', (e)=>{
     console.log(`[ERROR] SOMETHING HAPPENED.. REBOOTING THE STREAM ON ${message.guild.name}`);
-    broadcast.end();
-    return message.member.voice.channel.leave();
+    
+     message.member.voice.channel.leave();
+     return broadcast.end();
     
 });
 
@@ -248,6 +216,7 @@ if(message.member.voice.channel.id === message.guild.me.voice.channel.id){
     await message.channel.send(`Merci de nous avoir écouté ${message.author}, à la prochaine ! 💫`);
     console.log(`[STOPRADIO] Par ${message.author.username} dans [${message.guild.name}]`)
     console.log(`[STOP] SUNSET is now OFF in ${message.guild.name}`);
+
    return  message.member.voice.channel.leave();
     
     
