@@ -171,8 +171,14 @@ client.on('message', async message => {
 
 dispatcher.on('finish', () => {
     console.log(`[STOP] SUNSET is now OFF in ${message.guild.name}`);
-    message.member.voice.channel.leave();
-    return broadcast.end();
+    try{
+      return  message.member.voice.channel.leave();
+    
+    } catch{
+        console.log("dispatcher on finish triggered but failed");
+        
+    }
+    
     
    
     
@@ -182,9 +188,13 @@ dispatcher.on('finish', () => {
 dispatcher.on('error', (e)=>{
     console.log(`[ERROR] SOMETHING HAPPENED.. REBOOTING THE STREAM ON ${message.guild.name}`);
     
-     message.member.voice.channel.leave();
-     return broadcast.end();
-    
+    try{
+    return message.member.voice.channel.leave();
+     
+    } catch{
+        console.log("dispatcher on error triggered but failed");
+      
+    }
 });
 
 message.react("✅");

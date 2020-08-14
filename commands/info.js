@@ -50,7 +50,7 @@ description: 'Informations',
 return g2.me.voice.channel.members.size - g1.me.voice.channel.members.size;
    });
 
-  map.forEach((guild)=>console.log(guild.name));
+
 
 
 
