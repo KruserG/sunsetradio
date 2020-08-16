@@ -27,9 +27,17 @@ for (const file of commandFiles) {
 
 const cooldowns = new Discord.Collection();
 
+
+let broadcast;
+let dispatcher
 // Quand le bot est prêt à être en ligne
 client.on("ready", ()=> {
 
+    
+//creating an unique broadcast
+
+ broadcast = client.voice.createBroadcast();
+ dispatcher = broadcast.play('https://listen.radioking.com/radio/330331/stream/378616');
   
 
 let title;
@@ -127,10 +135,6 @@ setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
 
 });
 
-//creating an unique broadcast
-
-const broadcast = client.voice.createBroadcast();
-const dispatcher = broadcast.play('https://listen.radioking.com/radio/330331/stream/378616');
 
 client.on('message', async message => {
 
