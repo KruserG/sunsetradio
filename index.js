@@ -29,7 +29,7 @@ const cooldowns = new Discord.Collection();
 
 
 let broadcast;
-let dispatcher
+let dispatcher;
 // Quand le bot est prêt à être en ligne
 client.on("ready", ()=> {
 
@@ -182,9 +182,6 @@ dispatcher.on('finish', () => {
         console.log("dispatcher on finish triggered but failed");
         
     }
-    
-    
-   
     
 });
 
