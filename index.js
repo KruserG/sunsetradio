@@ -28,16 +28,15 @@ for (const file of commandFiles) {
 const cooldowns = new Discord.Collection();
 
 
-let broadcast;
-let dispatcher;
+
 // Quand le bot est prêt à être en ligne
 client.on("ready", ()=> {
 
     
 //creating an unique broadcast
 
- broadcast = client.voice.createBroadcast();
- dispatcher = broadcast.play('https://listen.radioking.com/radio/330331/stream/378616');
+
+
   
 
 let title;
@@ -78,11 +77,8 @@ let artist;
 
     //  ============================  playground : console log when bot's online ============================
 /*
-    let map = new Map();
-    map = client.guilds.cache.sort((g1,g2) => g2.memberCount - g1.memberCount);
-   map.forEach((guild,id) => {
-        console.log(`${guild.name} : ${guild.memberCount}` )
-    });
+   
+
 
 
 */
@@ -134,6 +130,12 @@ setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
    }
 
 });
+
+
+
+const broadcast = client.voice.createBroadcast();
+const dispatcher = broadcast.play('https://listen.radioking.com/radio/330331/stream/378616');
+
 
 
 client.on('message', async message => {
@@ -205,15 +207,6 @@ message.channel.send(`Merci d'avoir choisi **Sunset Radio** ! :heart:\nEntrez la
                 message.react("❌");
            return message.reply("vous devez être **présent** dans un salon vocal pour inviter **Sunset Radio**. :eyes:")
             }
-
-
-   
-              
-              
-          
-        
-
-
 }
 
 if(message.content.toLowerCase() === `${prefix}stopradio`){
@@ -236,14 +229,7 @@ if(message.member.voice.channel.id === message.guild.me.voice.channel.id){
     return message.reply("vous devez être **présent** dans le salon vocal de la radio. :eyes:")
 }
 
-}
-
-
-
-
-
-  
-  
+} 
   
     }
 
