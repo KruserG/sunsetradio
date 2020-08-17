@@ -137,7 +137,6 @@ const broadcast = client.voice.createBroadcast();
 const dispatcher = broadcast.play('https://listen.radioking.com/radio/330331/stream/378616');
 
 
-
 client.on('message', async message => {
 
     
@@ -150,6 +149,9 @@ client.on('message', async message => {
         if (!permissions.has("SPEAK"))
           return message.reply("Je ne peux pas parler dans le salon, assurez vous de me donner les permissions nécessaires.");
 
+
+
+          
         if (message.author.bot) return; //L'utilisateur n'est pas un bot
         if (!message.guild) return; // user is in a server (guild)
         if(message.guild.me.voice.channel){
