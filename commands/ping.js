@@ -13,11 +13,7 @@ message.reply("pong !");
 
 
 
-
-
 	
-		
-		
 		
 	},
 };

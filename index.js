@@ -132,9 +132,29 @@ setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
 });
 
 
-
+// Creating a broadcast
 const broadcast = client.voice.createBroadcast();
-const dispatcher = broadcast.play('https://listen.radioking.com/radio/330331/stream/378616');
+let dispatcher = broadcast.play('https://listen.radioking.com/radio/330331/stream/378616');
+
+
+
+client.on('message', async (message,dispatcher) =>{
+    if (message.author.bot) return; //L'utilisateur n'est pas un bot
+    if (!message.guild) return; // user is in a server (guild)
+
+    if(message.content.toLowerCase()=== `${prefix}fix`){
+        message.channel.send(`Réparation en cours sur tous les serveurs... ⚙️🔨`);
+
+
+       dispatcher = await broadcast.play('https://listen.radioking.com/radio/330331/stream/378616');
+
+        
+        await message.react("⚙️").then(message.react("🔨"));
+        message.channel.send(`La radio a été réparée avec succès par ${message.author} !`).then(m=> m.react("✅"));
+        console.log(`[FIX] Par ${message.author.username} dans [${message.guild.name}]`);
+    }
+    
+});
 
 
 client.on('message', async message => {
@@ -165,7 +185,9 @@ client.on('message', async message => {
 
       
              const connection = await message.member.voice.channel.join();
-           
+
+             
+
              await connection.voice.setSelfDeaf(true);
               await connection.play(broadcast);
 

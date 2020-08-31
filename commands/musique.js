@@ -5,7 +5,7 @@ module.exports = {
   name: 'musique',
 	description: 'Musiques',
 	
-	cooldown: 300,
+	cooldown: 60,
 	async execute(message, args, client) {
 
 
@@ -34,7 +34,7 @@ module.exports = {
 
 		  await message.react("🎵");
 
-		  message.channel.send(`Merci ${message.author} de nous avoir suggéré **${title}** 🎵 !\n\nTa musique a été envoyé avec **succès** aux animateurs de Sunset Radio ! 🌇\n\n*Note que tu dois attendre \`5 minutes\` pour envoyer une nouvelle suggestion de musique*`);
+		  message.channel.send(`Merci ${message.author} de nous avoir suggéré **${title}** 🎵 !\n\nTa musique a été envoyé avec **succès** aux animateurs de Sunset Radio ! 🌇\n\n*Note que tu dois attendre \`60 secondes\` pour envoyer une nouvelle suggestion de musique*`);
 		  
 
 return client.guilds.cache.get('707209368197791854').channels.cache.get('743795729918591007').send(embed).then(m=> {m.react("🟢"); m.react("🔴");} );

@@ -4,7 +4,7 @@ module.exports = {
   name: 'dedi',
 	description: 'Dédicaces',
 	
-	cooldown: 300,
+	cooldown: 60,
 	async execute(message, args, client) {
 
 
@@ -22,7 +22,7 @@ module.exports = {
 
 		  await message.react("📢");
 
-		  message.channel.send(`Merci ${message.author} ❤️ !\n\nTa dédicace a été envoyé avec succès aux animateurs de Sunset Radio ! 🌇\n\n*Note que tu dois attendre \`5 minutes\` pour envoyer une nouvelle dédicace*`);
+		  message.channel.send(`Merci ${message.author} ❤️ !\n\nTa dédicace a été envoyé avec succès aux animateurs de Sunset Radio ! 🌇\n\n*Note que tu dois attendre \`60 secondes\` pour envoyer une nouvelle dédicace*`);
 		  
 
 return client.guilds.cache.get('707209368197791854').channels.cache.get('715157077680586834').send(embed);
