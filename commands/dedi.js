@@ -13,12 +13,12 @@ module.exports = {
 		const embed = new MessageEmbed()
     
 		.setColor(message.guild.me.displayColor)
-		.setThumbnail("https://i.imgur.com/DwtzhmQ.png")
+		.setThumbnail("https://imgur.com/LTnN53h.png")
 		.setAuthor(message.guild.name, `https://cdn.discordapp.com/icons/${message.guild.id}/${message.guild.icon}.png`)
 		  .setTitle(`Nouvelle dédicace de ${message.author.username} !`)
 		  
 		  .setDescription(args.join(" "))
-		  .setFooter(message.author.username, message.author.displayAvatarURL({format:"jpg"}));
+		  .setFooter(message.author.tag, message.author.displayAvatarURL({format:"jpg"}));
 
 		  await message.react("📢");
 

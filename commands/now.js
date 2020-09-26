@@ -17,7 +17,7 @@ module.exports = {
         
         const nowPlaying = new   MessageEmbed()
         .setColor("#ff4545")
-        .setAuthor('sunsetradio.me', 'https://i.imgur.com/uhfAN6p.png', 'https://www.sunsetradio.me/')
+        .setAuthor('sunsetradio.me', 'https://imgur.com/OokHxFk.png', 'https://www.sunsetradio.me/')
         .setTitle(`⛔ Oh non ! Une maintenance est en cours 🔨`)
         .setDescription(`Nous sommes entrain d'améliorer votre radio, suivez l'avancement de la maintenance sur notre compte **Instagram** !`)
         .setFooter("sunsetradiofr", 'https://demo.wpzoom.com/instagram-widget/files/2016/08/icon-256x256.png')
