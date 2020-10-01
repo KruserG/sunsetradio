@@ -29,7 +29,7 @@ description: 'Informations',
 
    const info = new   MessageEmbed()
    .setColor(message.guild.me.displayColor)
-   .setDescription(`Nous sommes présents sur **${client.guilds.cache.size + 14}** serveurs`)
+   .setDescription(`Nous sommes présents sur **${client.guilds.cache.size}** serveurs`)
    .setAuthor('sunsetradio.me', 'https://imgur.com/OokHxFk.png', 'https://www.sunsetradio.me/')
    .setThumbnail("https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Circle-icons-radio.svg/1024px-Circle-icons-radio.svg.png");
    
